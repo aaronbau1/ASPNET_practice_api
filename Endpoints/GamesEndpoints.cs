@@ -30,7 +30,7 @@ namespace ASPNET_tutorial.Endpoints
 
         public static RouteGroupBuilder MapGamesEndpoints(this WebApplication app)
         {
-            var group = app.MapGroup("games");
+            var group = app.MapGroup("games").WithParameterValidation();
 
             // GET /games 
             group.MapGet("/", () => games);
@@ -59,7 +59,7 @@ namespace ASPNET_tutorial.Endpoints
                 return Results.CreatedAtRoute(GetGameEndpointName, new { id = game.Id }, game);
             });
 
-            // PUT /games/1p
+            // PUT /games/1
             group.MapPut("/{id}", (int id, UpdateGameDTO updatedGame) =>
             {
                 var index = games.FindIndex(game => game.Id == id);

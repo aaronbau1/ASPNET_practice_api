@@ -1,9 +1,11 @@
-﻿namespace ASPNET_tutorial.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ASPNET_tutorial.DTOs
 {
     public record class UpdateGameDTO(
-        string Name,
-        string Genre,
-        decimal Price,
+        [Required][StringLength(50)] string Name,
+        [Required][StringLength(20)] string Genre,
+        [Range(0, 100)] decimal Price,
         DateOnly ReleaseDate
     );
     
